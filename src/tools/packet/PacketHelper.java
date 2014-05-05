@@ -458,21 +458,12 @@
 /*      */ 
 /*      */     }
 /*      */ 
-               final Map<Byte, Integer> totemEquip = new LinkedHashMap();
-
-                for (Map.Entry<Byte, Integer> entry : totemEquip.entrySet())
-                {
-                mplew.write(((Byte)entry.getKey()).byteValue());
-                mplew.writeInt(((Integer)entry.getValue()).intValue());
-                }
-                mplew.write(255); 
- 
 /*  653 */     for (Map.Entry entry : myEquip.entrySet()) {
 /*  654 */       mplew.write(((Byte)entry.getKey()).byteValue());
 /*  655 */       mplew.writeInt(((Integer)entry.getValue()).intValue());
 /*      */     }
 /*  657 */     mplew.write(255);
-/*  658 */     //mplew.write(255);
+/*  658 */     mplew.write(255);
 /*      */ 
 /*  660 */     for (Map.Entry entry : maskedEquip.entrySet()) {
 /*  661 */       mplew.write(((Byte)entry.getKey()).byteValue());

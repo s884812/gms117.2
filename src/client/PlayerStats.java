@@ -788,10 +788,10 @@ public class PlayerStats implements Serializable {
             case 3111:
             case 3112:
                 mpRecoverProp = 100;
-                bx = SkillFactory.getSkill(31000003);
+                bx = SkillFactory.getSkill(31000003);//HP增加
                 bof = chra.getTotalSkillLevel(bx);
                 if (bof > 0) {
-                    percent_hp += bx.getEffect(bof).getHpR();
+                this.percent_hp += bx.getEffect(bof).getPercentHP();
                 }
                 bx = SkillFactory.getSkill(31100007);
                 bof = chra.getTotalSkillLevel(bx);
@@ -886,12 +886,12 @@ public class PlayerStats implements Serializable {
                     mpRecover += eff.getX();
                     mpRecoverProp += eff.getBossDamage(); //yes
                 }
-                bx = SkillFactory.getSkill(30010185);
+                bx = SkillFactory.getSkill(30010185);//恶魔之血
                 bof = chra.getTotalSkillLevel(bx);
                 if (bof > 0) {
                     eff = bx.getEffect(bof);
                     chra.getTrait(MapleTraitType.will).addLocalExp(GameConstants.getTraitExpNeededForLevel(eff.getY()));
-                    chra.getTrait(MapleTraitType.charisma).addLocalExp(GameConstants.getTraitExpNeededForLevel(eff.getZ()));
+                    //chra.getTrait(MapleTraitType.charisma).addLocalExp(GameConstants.getTraitExpNeededForLevel(eff.getZ()));
                 }
                 bx = SkillFactory.getSkill(30010111);
                 bof = chra.getTotalSkillLevel(bx);

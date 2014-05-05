@@ -4624,125 +4624,38 @@ ps.close();
         silentPartyUpdate();
         guildUpdate();
         familyUpdate();
-        if (job == 520 && getLevel() == 70) {
-        changeJob((short) 521);
-        }
-        if (job == 521 && getLevel() == 120) {
-        changeJob((short) 522);
-        }
-        if (job == 510 && getLevel() == 70) {
-        changeJob((short) 511);
-        }
-        if (job == 511 && getLevel() == 120) {
-        changeJob((short) 512);
-        }
-        if (job == 420 && getLevel() == 70) {
-        changeJob((short) 421);
-        }
-        if (job == 421 && getLevel() == 120) {
-        changeJob((short) 422);
-        }
-        if (job == 410 && getLevel() == 70) {
-        changeJob((short) 411);
-        }
-        if (job == 411 && getLevel() == 120) {
-        changeJob((short) 412);
-        }
-        if (job == 320 && getLevel() == 70) {
-        changeJob((short) 321);
-        }
-        if (job == 321 && getLevel() == 120) {
-        changeJob((short) 322);
-        }
-        if (job == 310 && getLevel() == 70) {
-        changeJob((short) 311);
-        }
-        if (job == 311 && getLevel() == 120) {
-        changeJob((short) 312);
-        }
-        if (job == 210 && getLevel() == 70) {
-        changeJob((short) 211);
-        }
-        if (job == 211 && getLevel() == 120) {
-        changeJob((short) 212);
-        }
-        if (job == 220 && getLevel() == 70) {
-        changeJob((short) 221);
-        }
-        if (job == 221 && getLevel() == 120) {
-        changeJob((short) 222);
-        }
-        if (job == 230 && getLevel() == 70) {
-        changeJob((short) 231);
-        }
-        if (job == 231 && getLevel() == 120) {
-        changeJob((short) 232);
-        }
-        if (job == 110 && getLevel() == 70) {
-        changeJob((short) 111);
-        }
-        if (job == 111 && getLevel() == 120) {
-        changeJob((short) 112);
-        }
-        if (job == 120 && getLevel() == 70) {
-        changeJob((short) 121);
-        }
-        if (job == 121 && getLevel() == 120) {
-        changeJob((short) 122);
-        }
-        if (job == 130 && getLevel() == 70) {
-        changeJob((short) 131);
-        }
-        if (job == 131 && getLevel() == 120) {
-        changeJob((short) 132);
-        }
-        //Auto Job
-        if (job >= 430 && job <= 434) { // Dual Blade
-            switch (getLevel()) {
-                case 20:
-                    changeJob((short) 430);
-                    break;
-                case 30:
-                    changeJob((short) 431);
-                    break;
-                case 55:
-                    changeJob((short) 432);
-                    break;
-                case 70:
-                    changeJob((short) 433);
-                    break;
-                case 120:
-                    changeJob((short) 434);
-                    break;
-            }
-
-        } else if (GameConstants.isAdventurer(job) && job > 0 && job < 600 && job != 100 && job != 200 && job != 300 && job != 400 && job != 500 && job % 10 >= 0) { // Explorer (Not Beginner), must have a class first
-            final String base_ = (String.valueOf(job).substring(0, 2)) + "0"; // Take the first 2 digits
-            if (level >= 120 && job % 10 != 2) {
-                changeJob((short) (Short.valueOf(base_) + 2));
-            } else if ((level >= 70 && level <= 119) && job % 10 != 1) {
-                changeJob((short) (Integer.valueOf(base_) + 1));
-            } // rest = need use npc
-
-        } else if (GameConstants.isKOC(job) && job > 1000) { // KOC (Not Nobless) //1500, 1510, 1511, 1512
-            final String base = (String.valueOf(job).substring(0, 2)) + "00"; // Take the first 2 digits				
-            if (level >= 120 && job % 10 != 2 && job % 100 != 0) { // Level 120 and above, but not yet 4th job
-                changeJob((short) (Integer.valueOf(base) + 12));
-            } else if ((level >= 70 && level <= 119) && job % 10 != 1 && job % 100 != 0) { //Stil second job
-                changeJob((short) (Integer.valueOf(base) + 11));
-            } else if ((level >= 30 && level <= 69) && job % 100 == 0) { // Still first job
-                changeJob((short) (Integer.valueOf(base) + 10));
-            }
-
-        } else if (GameConstants.isAran(job)) { // Only one class
+        
+        if (GameConstants.isDemon(job)) {//恶魔转职
             switch (getLevel()) {
                 case 10:
-                    changeJob((short) 2100);
+                    MapleInventoryManipulator.addById(client, 1099001, (short) 1, "Scripted item: ");
+                    changeJob((short) 3100);
                     resetStats(4, 4, 4, 4);
+                    setRemainingAp((getLevel() - 1) * 5 + 8);
+                    updateSingleStat(MapleStat.AVAILABLEAP, getRemainingAp());
+                    setRemainingSp((getLevel() - 10) * 3 + 5);
+                    updateSingleStat(MapleStat.AVAILABLESP, getRemainingSp());
+                    break;
+                case 30:
+                    MapleInventoryManipulator.addById(client, 1099002, (short) 1, "Scripted item: ");
+                    changeJob((short) 3110);
+                    break;
+                case 70:
+                    MapleInventoryManipulator.addById(client, 1099003, (short) 1, "Scripted item: ");
+                    changeJob((short) 3111);
+                    break;
+                case 120:
+                    MapleInventoryManipulator.addById(client, 1099004, (short) 1, "Scripted item: ");
+                    changeJob((short) 3112);
+                    break;
+            }
+        } else if (GameConstants.isAran(job)) { // 战神转职
+            switch (getLevel()) {
+                case 10:
+                changeJob((short) 2100);
+                resetStats(4, 4, 4, 4);
                 setRemainingAp((getLevel() - 1) * 5 + 8);
                 updateSingleStat(MapleStat.AVAILABLEAP, getRemainingAp());
-                //setRemainingSp((getLevel() - 10) * 3 + 7);
-                //updateSingleStat(MapleStat.AVAILABLESP, getRemainingSp());
                     break;
                 case 30:
                     changeJob((short) 2110);
@@ -4754,310 +4667,30 @@ ps.close();
                     changeJob((short) 2112);
                     break;
             }
-        } else if (GameConstants.isEvan(job)) { // 2218, 2217, 2216, 2215, 2214, 2213, 2212, 2211, 2210, 2200, 2001
-            if (level >= 160 && job != 2218) {
-                changeJob((short) 2218); // which jobs give level 70 job?
-            } else if (level >= 120 && level <= 159 && job != 2217) {
-                changeJob((short) 2217);
-                    removeAll(1902041);                   
-                    Item eq_weapon2 = MapleItemInformationProvider.getInstance().getEquipById(1902042);
-                    eq_weapon2.setPosition((byte) -18);
-                    equip.addFromDB(eq_weapon2);
-                    equipChanged(); 
-            } else if (level >= 100 && level <= 119 && job != 2216) {
-                changeJob((short) 2216);
-            } else if (level >= 80 && level <= 99 && job != 2215) {
-                changeJob((short) 2215);
-                    removeAll(1902040);
-                    Item eq_weapon1 = MapleItemInformationProvider.getInstance().getEquipById(1902041);
-                    eq_weapon1.setPosition((byte) -18);
-                    equip.addFromDB(eq_weapon1);
-                    equipChanged(); 
-            } else if (level >= 60 && level <= 79 && job != 2214) {
-                changeJob((short) 2214);
-            } else if (level >= 50 && level <= 59 && job != 2213) {
-                changeJob((short) 2213);
-                Item eq_weapon = MapleItemInformationProvider.getInstance().getEquipById(1902040);
-                eq_weapon.setPosition((byte) -18);
-                equip.addFromDB(eq_weapon);
-                equipChanged();  
-            } else if (level >= 40 && level <= 49 && job != 2212) {
-                changeJob((short) 2212);
-            } else if (level >= 30 && level <= 39 && job != 2211) {
-                changeJob((short) 2211);
-            } else if (level >= 20 && level <= 29 && job != 2210) {
-                changeJob((short) 2210);
-            } else if (level >= 10 && level <= 19 && job != 2200) {
-                changeJob((short) 2200); 
+        } else if (GameConstants.isPhantom(job)) {//幻影转职
+            switch (getLevel()) {
+                case 10:
+                MapleInventoryManipulator.addById(client, 1352100, (short) 1, "Scripted item: ");
+                changeJob((short) 2400);
                 resetStats(4, 4, 4, 4);
                 setRemainingAp((getLevel() - 1) * 5 + 8);
                 updateSingleStat(MapleStat.AVAILABLEAP, getRemainingAp());
-                //setRemainingSp((getLevel() - 10) * 3 + 7);
-                //updateSingleStat(MapleStat.AVAILABLESP, getRemainingSp());                
-            }
-
-        } else if (GameConstants.isDemon(job)) {
-            switch (getLevel()) {
-                case 10:
-                    resetStats(4, 4, 4, 4);
-                setRemainingAp((getLevel() - 1) * 5 + 8);
-                updateSingleStat(MapleStat.AVAILABLEAP, getRemainingAp());
-                //setRemainingSp((getLevel() - 10) * 3 + 7);
-                //updateSingleStat(MapleStat.AVAILABLESP, getRemainingSp());                    
-                    changeJob((short) 3100);
                     break;
                 case 30:
-                    changeJob((short) 3110);
-                    removeAll(1099001);
-                    Item eq_weapon = MapleItemInformationProvider.getInstance().getEquipById(1099002);
-                    eq_weapon.setPosition((byte) -10);
-                    equip.addFromDB(eq_weapon);
-                    equipChanged();    
-                    break;
-                case 70:
-                    changeJob((short) 3111);
-                    removeAll(1099002);
-                    Item eq_weapon1 = MapleItemInformationProvider.getInstance().getEquipById(1099003);
-                    eq_weapon1.setPosition((byte) -10);
-                    equip.addFromDB(eq_weapon1);
-                    equipChanged();  
-                    break;
-                case 120:
-                    changeJob((short) 3112);
-                    removeAll(1099003);
-                    Item eq_weapon2 = MapleItemInformationProvider.getInstance().getEquipById(1099004);
-                    eq_weapon2.setPosition((byte) -10);
-                    equip.addFromDB(eq_weapon2);
-                    equipChanged();                      
-                    break;
-            }
-
-        } else if (GameConstants.isCannon(job)) {
-            switch (getLevel()) {
-                case 10:
-                    changeJob((short) 501);
-                    break;
-                case 30:
-                    changeJob((short) 530);
-                    break;
-                case 70:
-                    changeJob((short) 531);
-                    break;
-                case 120:
-                    changeJob((short) 532);
-                    break;
-            }
-        } else if (GameConstants.isMercedes(job)) {
-            switch (getLevel()) {
-                case 10:
-                    resetStats(4, 4, 4, 4);
-                setRemainingAp((getLevel() - 1) * 5 + 8);
-                updateSingleStat(MapleStat.AVAILABLEAP, getRemainingAp());
-                //setRemainingSp((getLevel() - 10) * 3 + 7);
-                //updateSingleStat(MapleStat.AVAILABLESP, getRemainingSp());
-                    changeJob((short) 2300);
-                    break;
-                case 30:
-                    changeJob((short) 2310);
-                    break;
-                case 70:
-                    changeJob((short) 2311);
-                    break;
-                case 120:
-                    changeJob((short) 2312);
-                    break;
-            }
-            
-        } else if (GameConstants.isMihile(job)) {
-            switch (getLevel()) {
-                case 10:
-                resetStats(4, 4, 4, 4);
-                setRemainingAp((getLevel() - 1) * 5 + 8);
-                updateSingleStat(MapleStat.AVAILABLEAP, getRemainingAp());
-                //setRemainingSp((getLevel() - 10) * 3 + 7);
-                //updateSingleStat(MapleStat.AVAILABLESP, getRemainingSp());
-                    changeJob((short) 5100);
-                    break;
-                case 30:
-                    changeJob((short) 5110);
-                    removeAll(1098000);
-                    Item eq_weapon = MapleItemInformationProvider.getInstance().getEquipById(1098001);
-                    eq_weapon.setPosition((byte) -10);
-                    equip.addFromDB(eq_weapon);
-                    equipChanged();    
-                    break;
-                case 70:
-                    changeJob((short) 5111);
-                    removeAll(1098001);
-                    Item eq_weapon1 = MapleItemInformationProvider.getInstance().getEquipById(1098002);
-                    eq_weapon1.setPosition((byte) -10);
-                    equip.addFromDB(eq_weapon1);
-                    equipChanged();  
-                    break;
-                case 120:
-                    changeJob((short) 5112);
-                    removeAll(1098002);
-                    Item eq_weapon2 = MapleItemInformationProvider.getInstance().getEquipById(1098003);
-                    eq_weapon2.setPosition((byte) -10);
-                    equip.addFromDB(eq_weapon2);
-                    equipChanged();  
-                    break;
-            }
-
-        } else if (GameConstants.isResist(job)) { //BattleMage
-            switch (getJob()) {
-                case 3200:
-                case 3210:
-                case 3211:
-                case 3212:
-                    switch (getLevel()) {
-                        case 30:
-                            changeJob((short) 3210);
-                            break;
-                        case 70:
-                            changeJob((short) 3211);
-                            break;
-                        case 120:
-                            changeJob((short) 3212);
-                            break;
-                    }
-                    break;
-                case 3300:
-                case 3310:
-                case 3311:
-                case 3312:
-                    switch (getLevel()) {
-                        case 30:
-                            changeJob((short) 3310);
-                            break;
-                        case 70:
-                            changeJob((short) 3311);
-                            break;
-                        case 120:
-                            changeJob((short) 3312);
-                            break;
-                    }
-                    break;
-                case 3001:
-                case 3100:
-                case 3110:
-                case 3111:
-                case 3112:
-                    switch (getLevel()) {
-                        case 10:
-                            resetStats(4, 4, 4, 4);
-                setRemainingAp((getLevel() - 1) * 5 + 8);
-                updateSingleStat(MapleStat.AVAILABLEAP, getRemainingAp());
-                //setRemainingSp((getLevel() - 10) * 3 + 7);
-                //updateSingleStat(MapleStat.AVAILABLESP, getRemainingSp());
-                            changeJob((short) 3100);
-                            break;
-                        case 30:
-                            changeJob((short) 3110);
-                            break;
-                        case 70:
-                            changeJob((short) 3111);
-                            break;
-                        case 120:
-                            changeJob((short) 3112);
-                            break;
-                    }
-                    break;
-                case 3500:
-                case 3510:
-                case 3511:
-                case 3512:
-                    switch (getLevel()) {
-                        case 30:
-                            changeJob((short) 3510);
-                            break;
-                        case 70:
-                            changeJob((short) 3511);
-                            break;
-                        case 120:
-                            changeJob((short) 3512);//isnt this phantom o-o phantom is 
-                            break;
-                    }
-                    break;
-            }
-
-
-
-            //  PHANTOM(2003),PHANTOM1(2400), PHANTOM2(2410), PHANTOM3(2411), PHANTOM4(2412),
-
-
-
-        } else if (GameConstants.isJett(job)) {
-            switch (getLevel()) {
-                case 10:
-                 changeJob((short) 508);
-                resetStats(4, 4, 4, 4);
-                setRemainingAp((getLevel() - 1) * 5 + 8);
-                updateSingleStat(MapleStat.AVAILABLEAP, getRemainingAp());
-                //setRemainingSp((getLevel() - 10) * 3 + 7);
-                //updateSingleStat(MapleStat.AVAILABLESP, getRemainingSp());                    
-                    Item eq_weapon = MapleItemInformationProvider.getInstance().getEquipById(1352300);
-                    eq_weapon.setPosition((byte) -10);
-                    equip.addFromDB(eq_weapon);
-                    equipChanged();    
-                    break;
-                case 30:
-                    changeJob((short) 570);
-                    removeAll(1352300);
-                    Item eq_weapon1 = MapleItemInformationProvider.getInstance().getEquipById(1352301);
-                    eq_weapon1.setPosition((byte) -10);
-                    equip.addFromDB(eq_weapon1);
-                    equipChanged();    
-                    break;
-                case 70:
-                    changeJob((short) 571);
-                    removeAll(1352301);
-                    Item eq_weapon2 = MapleItemInformationProvider.getInstance().getEquipById(1352302);
-                    eq_weapon2.setPosition((byte) -10);
-                    equip.addFromDB(eq_weapon2);
-                    equipChanged();  
-                    break;
-                case 120:
-                    changeJob((short) 572);
-                    removeAll(1352302);
-                    Item eq_weapon3 = MapleItemInformationProvider.getInstance().getEquipById(1352303);
-                    eq_weapon3.setPosition((byte) -10);
-                    equip.addFromDB(eq_weapon3);
-                    equipChanged();                      
-                    break;
-            }
-
-        } else if (GameConstants.isPhantom(job)) {
-            switch (getLevel()) {
-                case 10:
-                resetStats(4, 4, 4, 4);
-                setRemainingAp((getLevel() - 1) * 5 + 8);
-                updateSingleStat(MapleStat.AVAILABLEAP, getRemainingAp());
-                //setRemainingSp((getLevel() - 10) * 3 + 7);
-                //updateSingleStat(MapleStat.AVAILABLESP, getRemainingSp());                    
-                    changeJob((short) 2400);
-                    break;
-                case 30:
+                    MapleInventoryManipulator.addById(client, 1352101, (short) 1, "Scripted item: ");
                     changeJob((short) 2410);
                     break;
                 case 70:
+                    MapleInventoryManipulator.addById(client, 1352102, (short) 1, "Scripted item: ");
                     changeJob((short) 2411);
                     break;
                 case 120:
+                    MapleInventoryManipulator.addById(client, 1352103, (short) 1, "Scripted item: ");
                     changeJob((short) 2412);
                     break;
-            } 
+            }
         }
-
-
-
-        //    PHANTOM(2003),PHANTOM1(2400), PHANTOM2(2410), PHANTOM3(2411), PHANTOM4(2412),
-        // End of auto job [someone optimize this]
-        //if (map.getForceMove() > 0 && map.getForceMove() <= getLevel()) {
-        //    changeMap(map.getReturnMap(), map.getReturnMap().getPortal(0));
-        //    dropMessage(-1, "You have been expelled from the map.");
-        //}
-    }
+}
 
     public void changeKeybinding(int key, byte type, int action) {
         if (type != 0) {

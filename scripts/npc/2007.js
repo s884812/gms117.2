@@ -22,15 +22,6 @@ if (selection == 5) {
 cm.changeJob(501); //»ðÅÚÊÖ
  cm.gainItem(4032055, 1);
  cm.gainItem(1532000 ,1);
-		cm.gainExp(1000); 
-				cm.gainExp(1000); 
-						cm.gainExp(1000); 
-								cm.gainExp(1000); 
-										cm.gainExp(1000); 
-												cm.gainExp(1000); 
-														cm.gainExp(1000); 
-																cm.gainExp(1000); 
-																		cm.gainExp(248);     
       cm.resetStats(4, 4, 4, 4);
 	    cm.expandInventory(1, 4);
 	    cm.expandInventory(4, 4);
@@ -43,15 +34,6 @@ cm.changeJob(2300); //Ë«åó¾«Áé
  cm.gainItem(4032055, 1);
  cm.gainItem(1522038, 1); 
  cm.gainItem(1352005, 1);
-		cm.gainExp(1000); 
-				cm.gainExp(1000); 
-						cm.gainExp(1000); 
-								cm.gainExp(1000); 
-										cm.gainExp(1000); 
-												cm.gainExp(1000); 
-														cm.gainExp(1000); 
-																cm.gainExp(1000); 
-																		cm.gainExp(248);   
       cm.resetStats(4, 4, 4, 4);
 	    cm.expandInventory(1, 4);
 	    cm.expandInventory(4, 4);
@@ -60,40 +42,21 @@ cm.changeJob(2300); //Ë«åó¾«Áé
 	    cm.warp(104000000);
 	}
 if (selection == 7) {
-cm.changeJob(3100);//¶ñÄ§ÁÔÊÖ
- cm.gainItem(4032055, 1);
- cm.gainItem(1322123, 1);
- cm.gainItem(1099000, 1);
-		cm.gainExp(1000); 
-				cm.gainExp(1000); 
-						cm.gainExp(1000); 
-								cm.gainExp(1000); 
-										cm.gainExp(1000); 
-												cm.gainExp(1000); 
-														cm.gainExp(1000); 
-																cm.gainExp(1000); 
-																		cm.gainExp(248);  
+      cm.changeJob(3001);//¶ñÄ§ÁÔÊÖ
+      cm.gainItem(4032055, 1);
+      cm.gainItem(1322123, 1);
+      cm.gainItem(1099000, 1);
       cm.resetStats(4, 4, 4, 4);
 	    cm.expandInventory(1, 4);
 	    cm.expandInventory(4, 4);
       cm.c.getPlayer().setRemainingAp((cm.getPlayer().getLevel() - 1) * 5 + 8);
 	    cm.c.getPlayer().updateSingleStat(MapleStat.AVAILABLEAP, cm.c.getPlayer().getRemainingAp());
-		cm.warp(104000000);
 	}
 	if (selection == 8) {
 cm.changeJob(430);//°µÓ°Ë«µ¶ 
  cm.gainItem(4032055, 1);
  cm.gainItem(1342047, 1);
  cm.gainItem(1332007, 1);
-		cm.gainExp(1000); 
-				cm.gainExp(1000); 
-						cm.gainExp(1000); 
-								cm.gainExp(1000); 
-										cm.gainExp(1000); 
-												cm.gainExp(1000); 
-														cm.gainExp(1000); 
-																cm.gainExp(1000); 
-																		cm.gainExp(248);    
       cm.resetStats(4, 4, 4, 4);
 	    cm.expandInventory(1, 4);
 	    cm.expandInventory(4, 4);
@@ -105,15 +68,6 @@ cm.changeJob(430);//°µÓ°Ë«µ¶
 cm.changeJob(508); //Ìúµ¨»ð³µÏÀ
  cm.gainItem(1492000, 1);
  //cm.gainItem(1352300, 1);
-		cm.gainExp(1000); 
-				cm.gainExp(1000); 
-						cm.gainExp(1000); 
-								cm.gainExp(1000); 
-										cm.gainExp(1000); 
-												cm.gainExp(1000); 
-														cm.gainExp(1000); 
-																cm.gainExp(1000); 
-																		cm.gainExp(248); 
       cm.resetStats(4, 4, 4, 4);
 	    cm.expandInventory(1, 4);
 	    cm.expandInventory(4, 4);
